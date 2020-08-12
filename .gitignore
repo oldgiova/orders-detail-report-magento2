@@ -3,3 +3,4 @@ app.db
 __pycache__
 .vscode
 app/__pycache__/
+app/__pycache__/routes.cpython-36.pyc
