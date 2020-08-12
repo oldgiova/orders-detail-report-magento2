@@ -1,15 +1,15 @@
 import requests
-from orders-detail-report-magento2 import Config
+# from config import Config
+from app import app
 
+# app.config.from_object(Config)
+headers = {"Authorization": "Bearer " + app.config['MAGENTO_TOKEN']}
 
-Class Magento():
-    headers = {"Authorization": "Bearer " + app.Config['MAGENTO_TOKEN']}
-
-    def get_all_orders_from_magento():
-        r = requests.get(app.Config['MAGENTO_REST_URL'] + '/' + 
-                        app.Config['MAGENTO_STORE'] + '/' +
-                        'V1/orders/items?searchCriteria=all',
-                        headers=headers
-                        )
-        print(r.json())
-        return True
+def get_mage_orders():
+    r = requests.get(app.config['MAGENTO_REST_URL'] + '/' + 
+                    app.config['MAGENTO_STORE'] + '/' +
+                    'V1/orders/items?searchCriteria=all',
+                    headers=headers
+                    )
+    print(r.json())
+    return r.json()

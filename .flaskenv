@@ -1,1 +1,1 @@
-FLASK_APP=orders-detail-report-magento2
+FLASK_APP=orders_detail_report_magento2
