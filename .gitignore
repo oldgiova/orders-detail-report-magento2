@@ -1,2 +1,3 @@
 venv
-app.db__pycache__
+app.db
+__pycache__
