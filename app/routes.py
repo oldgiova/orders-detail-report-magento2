@@ -3,7 +3,7 @@ from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user
 from app.models import User
-from app.magento import get_mage_orders
+from app.magento import get_mage_orders, get_mage_orders_with_name_filter, mage_get_all_order_ids
 from flask_login import logout_user, login_required
 from werkzeug.urls import url_parse
 
@@ -12,8 +12,9 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required
 def index():
-    mage_all_orders = get_mage_orders()
-    return render_template('index.html', title='Home', mage_all_orders = mage_all_orders)
+    mage_all_orders = get_mage_orders_with_name_filter('Coperto')
+    list_order_ids = mage_get_all_order_ids(mage_all_orders)
+    return render_template('index.html', title='Home', mage_all_orders = mage_all_orders, list_order_ids = list_order_ids)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
