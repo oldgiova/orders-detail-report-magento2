@@ -3,6 +3,24 @@
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
     <h2>Following, your magento2 full orders</h2>
-    <p>{{ list_order_ids }}</p>
-    <p>{{ mage_all_orders }}</p>
+    <table style="text-align: center; border: 1px;">
+        <tr valign="top">
+            <th>NOME</th>
+            <th>COGNOME</th>
+            <th>EMAIL</th>
+            <th>DATA PRENOTAZIONE</th>
+            <th>COPERTO</th>
+            <th>QUANTITA</th>
+        </tr>
+    {% for order in final_details_list %}
+        <tr>
+            <td>{{ order.nome }}</td>
+            <td>{{ order.cognome }}</td>
+            <td>{{ order.email }}</td>
+            <td>{{ order.creazione }}</td>
+            <td>{{ order.prenotazione }}</td>
+            <td>{{ order.quantita }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 {% endblock %}
