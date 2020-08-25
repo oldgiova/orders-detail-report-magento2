@@ -56,6 +56,9 @@ def mage_return_order_important_details_only(order_details):
     Takes in input a json with all order details
     and return a list with just the details you need
     '''
+    # if order is canceled then do nothing
+    if order_details["status"] == "canceled":
+        return None
     order_details_dict = {}
     order_details_dict["email"] = order_details["customer_email"]
     order_details_dict["creazione"] = order_details["created_at"]
