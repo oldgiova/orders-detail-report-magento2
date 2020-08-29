@@ -62,8 +62,8 @@ def mage_return_order_important_details_only(order_details):
     order_details_dict = {}
     order_details_dict["email"] = order_details["customer_email"]
     order_details_dict["creazione"] = order_details["created_at"]
-    order_details_dict["nome"] = order_details["customer_firstname"]
-    order_details_dict["cognome"] = order_details["customer_lastname"]
+    order_details_dict["nome"] = order_details["billing_address"]["firstname"]
+    order_details_dict["cognome"] = order_details["billing_address"]["lastname"]
     for detail in order_details["items"]:
         if detail["product_type"] == "virtual":
             order_details_dict["prenotazione"] = detail["sku"]
@@ -75,7 +75,8 @@ def mage_group_all_order_details_important(order_id_list):
     for order_id in order_id_list:
         json_all_detail_single_order = mage_get_details_from_single_order(order_id)
         single_order_important_details_only = mage_return_order_important_details_only(json_all_detail_single_order)
-        mage_final_details_list.append(single_order_important_details_only)
+        if single_order_important_details_only is not None:
+            mage_final_details_list.append(single_order_important_details_only)
 
     return mage_final_details_list
 
