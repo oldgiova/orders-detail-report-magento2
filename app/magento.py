@@ -64,9 +64,12 @@ def mage_return_order_important_details_only(order_details):
     order_details_dict["creazione"] = order_details["created_at"]
     order_details_dict["nome"] = order_details["billing_address"]["firstname"]
     order_details_dict["cognome"] = order_details["billing_address"]["lastname"]
+    order_details_dict["tel"] = order_details["billing_address"]["telephone"]
     for detail in order_details["items"]:
         if detail["product_type"] == "virtual":
             order_details_dict["prenotazione"] = detail["sku"]
+            order_details_dict["data"], order_details_dict["ora"] = detail["sku"].split('-') # Coperto cena Venerdi 11-21:00
+            order_details_dict["data"] = order_details_dict["data"][-2:] # 11
             order_details_dict["quantita"] = detail["qty_ordered"]
     return order_details_dict
 

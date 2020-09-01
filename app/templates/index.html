@@ -8,8 +8,10 @@
             <th>NOME</th>
             <th>COGNOME</th>
             <th>EMAIL</th>
+            <th>TEL</th>
+            <th>DATA ACQUISTO</th>
             <th>DATA PRENOTAZIONE</th>
-            <th>COPERTO</th>
+            <th>TURNO</th>
             <th>QUANTITA</th>
         </tr>
     {% for order in final_details_list %}
@@ -17,8 +19,10 @@
             <td>{{ order.nome }}</td>
             <td>{{ order.cognome }}</td>
             <td>{{ order.email }}</td>
+            <td>{{ order.tel }}</td>
             <td>{{ order.creazione }}</td>
-            <td>{{ order.prenotazione }}</td>
+            <td>{{ order.data }}</td>
+            <td>{{ order.ora }}</td>
             <td>{{ order.quantita }}</td>
         </tr>
     {% endfor %}
