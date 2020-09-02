@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
-    <h2>Following, your magento2 full orders</h2>
+    <h2>Qui gli ordini attuali:</h2>
     <table style="text-align: center; border: 1px;">
         <tr valign="top">
             <th>NOME</th>
@@ -27,4 +27,17 @@
         </tr>
     {% endfor %}
     </table>
+    <br><br>
+    <h2>Qui le quantita ancora disponibili:</h2>
+    <table style="text-align: center; border: 1px;">
+        <tr valign="top">
+            <th>TURNO</th>
+            <th>ANCORA DISPONIBILE</th>
+        </tr>
+    {% for salable in salable_quantity_list %}
+        <tr>
+            <td>{{ salable.sku }}</td>
+            <td>{{ salable.salable_qty }}</td>
+        </tr>
+    {% endfor %}
 {% endblock %}

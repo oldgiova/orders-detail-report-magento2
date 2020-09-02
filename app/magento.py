@@ -84,6 +84,46 @@ def mage_group_all_order_details_important(order_id_list):
     return mage_final_details_list
 
 
+def mage_get_salable_quantity():
+    all_skus = mage_get_all_skus()
+    mage_final_salable_list = []
+    for sku in all_skus["items"]:
+        sku_salable_dict = {}
+        sku_salable_dict["sku"] = sku["sku"]
+        sku_salable_dict["salable_qty"] = mage_get_this_product_salable_qty(sku["sku"])
+        mage_final_salable_list.append(sku_salable_dict)
+    return mage_final_salable_list
+
+
+
+def mage_get_all_skus():
+    r = requests.get(app.config['MAGENTO_REST_URL'] + '/' + 
+                    app.config['MAGENTO_STORE'] + '/' +
+                    'V1/products?' +
+                    'fields=items[sku,name,id]&' +
+                    'searchCriteria[filter_groups][0][filters][0][field]=sku&' +
+                    'searchCriteria[filter_groups][0][filters][0][value]=%25Coperto%25&' +
+                    'searchCriteria[filter_groups][0][filters][0][condition_type]=like&' +
+                    'searchCriteria[filter_groups][1][filters][0][field]=type_id&' +
+                    'searchCriteria[filter_groups][1][filters][0][value]=virtual&' +
+                    'searchCriteria[filter_groups][1][filters][0][condition_type]=eq&' +
+                    'searchCriteria[filter_groups][2][filters][0][field]=status&' +
+                    'searchCriteria[filter_groups][2][filters][0][value]=1&' +
+                    'searchCriteria[filter_groups][2][filters][0][condition_type]=eq',
+                    headers=headers
+                    )
+    return r.json()
+
+def mage_get_this_product_salable_qty(sku):
+    r = requests.get(app.config['MAGENTO_REST_URL'] + '/' + 
+                    app.config['MAGENTO_STORE'] + '/' +
+                    'V1/inventory/get-product-salable-quantity/' +
+                    sku.replace(' ', '%20') +
+                    '/1', #the default stockid
+                    headers=headers
+                    )
+    return r.text
+
     
 
         
