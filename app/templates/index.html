@@ -5,6 +5,7 @@
     <h2>Qui gli ordini attuali:</h2>
     <table style="text-align: center; border: 1px;">
         <tr valign="top">
+            <th>ID ORDINE</th>
             <th>NOME</th>
             <th>COGNOME</th>
             <th>EMAIL</th>
@@ -16,6 +17,7 @@
         </tr>
     {% for order in final_details_list %}
         <tr>
+            <td>{{ order.increment_id }}</td>
             <td>{{ order.nome }}</td>
             <td>{{ order.cognome }}</td>
             <td>{{ order.email }}</td>

@@ -65,6 +65,7 @@ def mage_return_order_important_details_only(order_details):
     order_details_dict["nome"] = order_details["billing_address"]["firstname"]
     order_details_dict["cognome"] = order_details["billing_address"]["lastname"]
     order_details_dict["tel"] = order_details["billing_address"]["telephone"]
+    order_details_dict["increment_id"] = order_details["increment_id"]
     for detail in order_details["items"]:
         if detail["product_type"] == "virtual":
             order_details_dict["prenotazione"] = detail["sku"]
