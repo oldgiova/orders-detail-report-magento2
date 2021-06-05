@@ -12,7 +12,7 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required
 def index():
-    mage_all_orders = get_mage_orders_with_name_filter('Coperto')
+    mage_all_orders = get_mage_orders_with_name_filter('Menu')
     order_id_list = mage_get_all_order_ids(mage_all_orders)
     final_details_list = mage_group_all_order_details_important(order_id_list)
     salable_quantity_list = mage_get_salable_quantity()
