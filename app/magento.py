@@ -22,7 +22,10 @@ def get_mage_orders_with_name_filter(mage_product_name):
                     'searchCriteria[filter_groups][0][filters][0][condition_type]=like&' +
                     'searchCriteria[filter_groups][1][filters][0][field]=product_type&' +
                     'searchCriteria[filter_groups][1][filters][0][value]=virtual&' +
-                    'searchCriteria[filter_groups][1][filters][0][condition_type]=eq',
+                    'searchCriteria[filter_groups][1][filters][0][condition_type]=eq&' +
+                    'searchCriteria[filter_groups][2][filters][0][field]=product_id&' +
+                    'searchCriteria[filter_groups][2][filters][0][value]=102&' +
+                    'searchCriteria[filter_groups][2][filters][0][condition_type]=neq',
                     headers=headers
                     )
     return r.json()
